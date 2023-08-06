@@ -1,7 +1,7 @@
 // Находим форму в DOM
 let formElement = document.querySelector('.page__popUp'); //Всплывающее окно
 let openFormBtn = document.querySelector('.profile__edit'); //кнопка открытия окна
-let closeFormBtn = document.querySelector('.form__close_btn'); //кнопка зкрытия окна
+let closeFormBtn = document.querySelector('.form__close'); //кнопка зкрытия окна
 let formSubmitText = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
 let elementGroup = document.querySelector('.element__group'); //Кнопка нравится
 let likeBtnActive = document.querySelector('element__group_active'); //Кнопка нравится активная
