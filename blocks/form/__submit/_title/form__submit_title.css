@@ -1,4 +1,4 @@
-.form__submit_name {
+.form__submit_title {
     color: #FFF;
     text-align: center;
     font-family: Inter;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 320px) {
-    .form__submit_name {
+    .form__submit_title {
         font-size: 14px;
     }
 }
