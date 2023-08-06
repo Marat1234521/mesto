@@ -1,0 +1,15 @@
+.form__submit_text {
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media screen and (max-width: 320px) {
+    .form__submit_text {
+        font-size: 14px;
+    }
+}

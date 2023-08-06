@@ -1,0 +1,9 @@
+.form__text_first {
+    margin-top: 47px;
+}
+
+@media screen and (max-width: 320px) {
+    .form__text_first {
+        margin-top: 79px;
+    }
+}

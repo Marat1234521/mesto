@@ -1,0 +1,11 @@
+.element__group_active {
+    float: right;
+    margin: 30px 20px 30px auto;
+    width: 22px;
+    height: 19px;
+    border: none;
+    background-image: url(../../../../images/Union_active.svg);
+    background-color: rgba(255, 255, 255, 1);
+    background-size: 22px 19px;
+    cursor: pointer;
+}
