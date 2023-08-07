@@ -1,14 +1,14 @@
-.form {
+.popup__container {
     position: relative;
-    margin: 8px auto 0 auto;
-    max-width: 430px;
+    max-width: 510px;
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
 }
 
 @media screen and (max-width: 510px) {
-    .form {
-        margin: 16px auto 0 auto;
+    .popup__container {
+        max-width: calc(100vw - 38px);
     }
 }

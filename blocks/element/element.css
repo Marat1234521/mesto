@@ -4,6 +4,9 @@
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 42px;
+    grid-template-rows: 1fr 80px;
 }
 
 @media screen and (max-width: 920px) {

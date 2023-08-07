@@ -1,15 +1,20 @@
 .element__group {
-    float: right;
     margin: 30px 20px 30px auto;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
     width: 22px;
     height: 19px;
     border: none;
     background-image: url(../../../images/Group.svg);
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255);
     background-size: 22px 19px;
     cursor: pointer;
 }
 
 .element__group:hover {
-    background-image: url(../../../images/Group\ hover.svg);
+    background-image: url(../../../images/Group-hover.svg);
+}
+
+.element__group:active {
+    background-image: url(../../../images/Union-active.svg);
 }

@@ -5,19 +5,24 @@
     height: 50px;
     border-radius: 2px;
     border: none;
-    background: #000;
+    background-color: #000;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .form__submit:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 320px) {
     .form__submit {
         margin-top: 45px;
+        font-size: 14px;
     }
 }

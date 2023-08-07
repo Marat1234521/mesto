@@ -4,14 +4,14 @@
     height: 50px;
     border: none;
     margin: auto 0 auto auto;
-    background-color: #000;
-    background-image: url(../../../images/Add\ Button.svg);
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(../../../images/AddButton.svg);
     background-size: 150px 50px;
     cursor: pointer;
 }
 
 .profile__add:hover {
-    background-image: url(../../../images/Add\ Button\ hover.svg);
+    background-image: url(../../../images/AddButton-hover.svg);
 }
 
 @media screen and (max-width: 920px) {
@@ -26,13 +26,13 @@
         height: 50px;
         border: 2px solid #fff;
         border-radius: 2px;
-        background-image: url(../../../images/Add_Button_Vector.svg);
+        background-image: url(../../../images/AddButton-Vector.svg);
         background-size: 16px;
         background-repeat: no-repeat;
         background-position: center;
     }
     .profile__add:hover {
-        background-image: url(../../../images/Add_Button_Vector.svg);
+        background-image: url(../../../images/AddButton-Vector.svg);
     }
 }
 

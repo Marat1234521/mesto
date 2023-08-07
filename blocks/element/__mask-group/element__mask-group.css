@@ -1,5 +1,7 @@
 .element__mask-group {
     display: block;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
     margin: 0;
     max-width: 282px;
     width: 100%;
@@ -11,7 +13,6 @@
     .element__mask-group {
         max-width: calc((100vw - 38px) / 2 - 8.5px);
         max-height: calc((100vw - 38px) / 2 - 8.5px);
-        height: 100%;
     }
 }
 
@@ -19,6 +20,5 @@
     .element__mask-group {
         max-width: calc(100vw - 38px);
         max-height: calc(100vw - 38px);
-        height: 100%;
     }
 }

@@ -1,19 +1,11 @@
 .form__rectangle {
-    margin: 40px auto;
+    margin: 0;
     max-width: 430px;
     width: 100%;
-    min-height: 330px;
     border-radius: 10px;
     box-sizing:border-box;
     padding: 34px 36px 37px;
     background: #FFF;
-}
-
-@media screen and (max-width: 510px) {
-    .form__rectangle {
-        margin: 36px auto;
-        max-width: calc(100vw - 38px);
-    }
 }
 
 @media screen and (max-width: 320px) {

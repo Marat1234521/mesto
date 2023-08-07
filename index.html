@@ -7,21 +7,6 @@
     <title>Project 3 Akhmetov</title>
 </head>
 <body class="page">
-    <div class="page__popUp">
-        <div class="page__overlay">
-            <form class="form">
-                <button class="form__close"></button>
-                <div class="form__rectangle">
-                    <h2 class="form__title">Редактировать профиль</h2>
-                    <input class="form__text form__text_first" type="text" placeholder="Жак-Ив Кусто">
-                    <input class="form__text form__text_second" type="text" placeholder="Исследователь океана">
-                    <button class="form__submit">
-                        <p class="form__submit-title">Сохранить</p>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div> 
     <div class="page__container">
         <header class="header">
             <img src="images/logo.svg" alt="Логотип шапки" class="header__logo">
@@ -38,38 +23,51 @@
         <section class="elements">
             <div class="element">
                 <img src="images/karachayevsk.jpg" alt="Карачаевск" class="element__mask-group">
-                <p class="element__title">Карачаевск</p>
-                <button class="element__group card1"></button>
+                <h3 class="element__title">Карачаевск</h3>
+                <button class="element__group"></button>
             </div>
             <div class="element">
-                <img src="images/Mount Elbrus.jpg" alt="Гора Эльбрус" class="element__mask-group">
-                <p class="element__title">Гора Эльбрус</p>
-                <button class="element__group card2"></button>
-            </div>
-            <div class="element">
-                <img src="images/Dombay.jpeg" alt="Домбай" class="element__mask-group">
-                <p class="element__title">Домбай</p>
-                <button class="element__group card3"></button>
-            </div>
-            <div class="element">
-                <img src="images/Mount Elbrus.jpg" alt="Гора Эльбрус" class="element__mask-group">
-                <p class="element__title">Гора Эльбрус</p>
-                <button class="element__group card4"></button>
+                <img src="images/MountElbrus.jpg" alt="Гора Эльбрус" class="element__mask-group">
+                <h3 class="element__title">Гора Эльбрус</h3>
+                <button class="element__group"></button>
             </div>
             <div class="element">
                 <img src="images/Dombay.jpeg" alt="Домбай" class="element__mask-group">
-                <p class="element__title">Домбай</p>
-                <button class="element__group card5"></button>
+                <h3 class="element__title">Домбай</h3>
+                <button class="element__group"></button>
+            </div>
+            <div class="element">
+                <img src="images/MountElbrus.jpg" alt="Гора Эльбрус" class="element__mask-group">
+                <h3 class="element__title">Гора Эльбрус</h3>
+                <button class="element__group"></button>
+            </div>
+            <div class="element">
+                <img src="images/Dombay.jpeg" alt="Домбай" class="element__mask-group">
+                <h3 class="element__title">Домбай</h3>
+                <button class="element__group"></button>
             </div>
             <div class="element">
                 <img src="images/karachayevsk.jpg" alt="Карачаевск" class="element__mask-group">
-                <p class="element__title">Карачаевск</p>
-                <button class="element__group card6"></button>
+                <h3 class="element__title">Карачаевск</h3>
+                <button class="element__group"></button>
             </div>
         </section>
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
+        <div class="page__pop-up">
+            <div class="popup__container">
+                <button class="form__close"></button>
+                <form class="form">
+                    <div class="form__rectangle">
+                        <h2 class="form__title">Редактировать профиль</h2>
+                        <input class="form__text form__text-title" type="text" placeholder="Жак-Ив Кусто">
+                        <input class="form__text form__text-subtitle" type="text" placeholder="Исследователь океана">
+                        <button class="form__submit" type="submit">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <script src="script.js"></script>
     </div>
 </body>
