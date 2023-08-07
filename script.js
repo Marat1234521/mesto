@@ -1,7 +1,7 @@
 // Находим форму в DOM
-let pagePopup = document.querySelector('.page__pop-up'); //Всплывающее окно
+let pagePopup = document.querySelector('.popup'); //Всплывающее окно
 let openFormBtn = document.querySelector('.profile__edit'); //кнопка открытия окна
-let closeFormBtn = document.querySelector('.form__close'); //кнопка зкрытия окна
+let closeFormBtn = document.querySelector('.popup__close'); //кнопка зкрытия окна
 
 let formRectangle = document.querySelector('.form');
 
@@ -17,11 +17,11 @@ closeFormBtn.addEventListener('click', closeForm);
 
 
 function closeForm () {
-    pagePopup.classList.remove('page__pop-up_active'); 
+    pagePopup.classList.remove('popup_active'); 
 }
 
 function openForm () {
-    pagePopup.classList.add('page__pop-up_active');
+    pagePopup.classList.add('popup_active');
 }
 
 
