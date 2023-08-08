@@ -5,6 +5,7 @@
     margin: auto 0 8px auto;
     background-color: rgba(0, 0, 0, 0);
     background-image: url(../../../images/EditButton.svg);
+    background-repeat: no-repeat;
     background-size: 24px;
     width: 24px;
     height: 24px;
@@ -13,12 +14,6 @@
 
 .profile__edit:hover {
     background-image: url(../../../images/EditButton-hover.svg);
-}
-
-@media screen and (max-width: 920px) {
-    .profile__edit {
-      
-    }
 }
 
 @media screen and (max-width: 370px) {
