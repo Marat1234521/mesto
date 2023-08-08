@@ -2,14 +2,8 @@
     margin: 22px auto 25px 30px;
     display: grid;
     grid-template-columns: 1fr 24px;
-    grid-template-rows: 39px 18px;
-    gap: 16px 18px;
-}
-
-@media screen and (max-width: 920px) {
-    .profile__info {
-        margin: 22px 0 0 30px;
-    }
+    grid-template-rows: auto auto;
+    gap: 8px 18px;
 }
 
 @media screen and (max-width: 520px) {
@@ -21,7 +15,6 @@
 @media screen and (max-width: 370px) {
     .profile__info {
         grid-template-columns: 1fr 18px;
-        grid-template-rows: 26px 18px;
         gap: 10px 14px;
     }
 }

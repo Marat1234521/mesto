@@ -2,7 +2,7 @@
     margin: 0;
     width: fit-content;
     color: #545454;
-    font-family: Inter;
+    font-family: 'Inter', Arial, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -12,5 +12,11 @@
 @media screen and (max-width: 920px) {
     .footer__copyright {
         margin: 0 auto 0 19px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .footer__copyright {
+        font-size: 14px;
     }
 }

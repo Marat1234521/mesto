@@ -12,9 +12,9 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__rectangle/form__rectangle.css);
 @import url(../blocks/form/__title/form__title.css);
-@import url(../blocks/form/__text/form__text.css);
-@import url(../blocks/form/__text/form__text-title.css);
-@import url(../blocks/form/__text/form__text-subtitle.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_title/form__input_title.css);
+@import url(../blocks/form/__input/_subtitle/form__input_subtitle.css);
 @import url(../blocks/form/__submit/form__submit.css);
 
 @import url(../blocks/header/header.css);

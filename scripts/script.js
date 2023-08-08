@@ -6,8 +6,8 @@ let closeFormBtn = document.querySelector('.popup__close'); //кнопка зк�
 let formRectangle = document.querySelector('.form');
 
 let formSubmit = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
-let formtTitle = document.querySelector('.form__text-title');
-let formSubtitle = document.querySelector('.form__text-subtitle');
+let formtTitle = document.querySelector('.form__input_title');
+let formSubtitle = document.querySelector('.form__input_subtitle');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let profileTitle = document.querySelector('.profile__title');
 
@@ -22,6 +22,8 @@ function closeForm () {
 
 function openForm () {
     pagePopup.classList.add('popup_active');
+    formtTitle.value = '';
+    formSubtitle.value = '';
 }
 
 
