@@ -6,9 +6,15 @@
     gap: 8px 18px;
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 920px) {
     .profile__info {
         margin: 22px auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .profile__info {
+        max-width: calc(100vw - 38px);
     }
 }
 

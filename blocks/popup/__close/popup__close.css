@@ -4,6 +4,7 @@
     background-color: rgba(0, 0, 0, 0);
     background-image: url(../../../images/CloseIcon.svg);
     background-size: 32px;
+    background-repeat: no-repeat;
     width: 32px;
     height: 32px;
     cursor: pointer;
