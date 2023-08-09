@@ -13,8 +13,8 @@
 @import url(../blocks/form/__rectangle/form__rectangle.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_title/form__input_title.css);
-@import url(../blocks/form/__input/_subtitle/form__input_subtitle.css);
+@import url(../blocks/form/__input/_type/_name/form__input_type_name.css);
+@import url(../blocks/form/__input/_type/_description/form__input_type_description.css);
 @import url(../blocks/form/__submit/form__submit.css);
 
 @import url(../blocks/header/header.css);
