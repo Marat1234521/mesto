@@ -8,14 +8,19 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/_active/popup_active.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/picture/picture.css);
+@import url(../blocks/popup/__title/popup__title.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__rectangle/form__rectangle.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_type/_name/form__input_type_name.css);
-@import url(../blocks/form/__input/_type/_description/form__input_type_description.css);
+@import url(../blocks/form/__input/_type/form__input_type_description.css);
+@import url(../blocks/form/__input/_type/form__input_type_name.css);
 @import url(../blocks/form/__submit/form__submit.css);
+@import url(../blocks/form/__submit/_card/form__submit_card.css);
+@import url(../blocks/form/__submit/_edit/form__submit_edit.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -35,6 +40,7 @@
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__group/_active/element__group_active.css);
+@import url(../blocks/element/__basket/element__basket.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

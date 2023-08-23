@@ -1,0 +1,7 @@
+.popup__image_open {
+    position: relative;
+    max-height: 540px;
+    height: 100%;
+    max-width: calc(100% - 40px);
+    width: 100%;
+}

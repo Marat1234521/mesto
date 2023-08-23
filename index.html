@@ -20,38 +20,17 @@
             </div>
             <button class="profile__add" type = "button"></button>
         </section>
-        <section class="elements">
-            <div class="element">
-                <img src="images/karachayevsk.jpg" alt="Карачаевск" class="element__mask-group">
-                <h2 class="element__title">Карачаевск</h2>
-                <button class="element__group" type = "button"></button>
-            </div>
-            <div class="element">
-                <img src="images/MountElbrus.jpg" alt="Гора Эльбрус" class="element__mask-group">
-                <h2 class="element__title">Гора Эльбрус</h2>
-                <button class="element__group" type = "button"></button>
-            </div>
-            <div class="element">
-                <img src="images/Dombay.jpeg" alt="Домбай" class="element__mask-group">
-                <h2 class="element__title">Домбай</h2>
-                <button class="element__group" type = "button"></button>
-            </div>
-            <div class="element">
-                <img src="images/MountElbrus.jpg" alt="Гора Эльбрус" class="element__mask-group">
-                <h2 class="element__title">Гора Эльбрус</h2>
-                <button class="element__group" type = "button"></button>
-            </div>
-            <div class="element">
-                <img src="images/Dombay.jpeg" alt="Домбай" class="element__mask-group">
-                <h2 class="element__title">Домбай</h2>
-                <button class="element__group" type = "button"></button>
-            </div>
-            <div class="element">
-                <img src="images/karachayevsk.jpg" alt="Карачаевск" class="element__mask-group">
-                <h2 class="element__title">Карачаевск</h2>
-                <button class="element__group" type = "button"></button>
-            </div>
-        </section>
+        <div class="popup_pictures">
+        <section class="elements"></section>
+        <template id="place-template">
+            <article class="element">
+                <h2 class="element__title"></h2>
+                <img src="" alt="" class="element__mask-group">
+                    <button class="element__group" type = "button"></button>
+                    <button class="element__basket" type = "button"></button>
+            </article>
+        </template>
+        </div>
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
@@ -60,11 +39,13 @@
                 <button class="popup__close" type = "button"></button>
                 <form class="form">
                     <div class="form__rectangle">
-                        <h2 class="form__title">Редактировать профиль</h2>
-                        <input class="form__input form__input_type_name" type="text" placeholder="Жак-Ив Кусто">
-                        <input class="form__input form__input_type_description" type="text" placeholder="Исследователь океана">
+                        <h2 class="form__title"></h2>
+                        <input class="form__input form__input_type_name" type="text" placeholder="">
+                        <input class="form__input form__input_type_description" type="text" placeholder="">
                         <button class="form__submit" type="submit">Сохранить</button>
                     </div>
+                </form>
+                <form class="popup__image">
                 </form>
             </div>
         </div>

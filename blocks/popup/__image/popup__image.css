@@ -1,8 +1,6 @@
-.form {
+.popup__image {
     position: relative;
     margin: 0 auto;
-    max-width: 430px;
-    width: 100%;
     display: flex;
     flex-direction: column;
 }

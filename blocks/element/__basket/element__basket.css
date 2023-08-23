@@ -1,0 +1,17 @@
+.element__basket {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 18px;
+    height: 19px;
+    border: none;
+    background-image: url(../../../images/Basket.svg);
+    background-color: rgba(0, 0, 0, 0);
+    background-size: 18px 19px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.element__basket:hover {
+    background-image: url(../../../images/Basket-hover.svg);
+}

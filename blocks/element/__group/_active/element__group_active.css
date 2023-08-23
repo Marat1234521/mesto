@@ -1,3 +1,7 @@
 .element__group_active {
     background-image: url(../../../../images/Union-active.svg);
 }
+
+.element__group_active:hover {
+    background-image: url(../../../../images/Union-active.svg);
+}
