@@ -6,8 +6,12 @@ const profileAddCard = document.querySelector('.profile__add');
 
 const profilePopup = document.querySelector("#profile-popup");
 const profilePopupForm = profilePopup.querySelector('.form');
+const profilePopupTitle = profilePopupForm.querySelector('.form__input_type_name');
+const profilePopupSubtitle = profilePopupForm.querySelector('.form__input_type_description');
 const cardPopup = document.querySelector("#card-popup");
 const cardPopupForm = cardPopup.querySelector('.form');
+const cardPopupTitle = cardPopupForm.querySelector('.form__input_type_name');
+const cardPopupSubtitle = cardPopupForm.querySelector('.form__input_type_description');
 const imagePopup = document.querySelector("#image-popup");
 const formRectangle = document.querySelector('.form__rectangle');
 const closeFormBtns = document.querySelectorAll('.popup__close'); 
@@ -19,8 +23,6 @@ const placeTemplate = document.querySelector("#place-template").content;
 
 const formTitle = document.querySelector('.form__title');
 const formSubmit = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
-const formtTitle = document.querySelector('.form__input_type_name');
-const formSubtitle = document.querySelector('.form__input_type_description');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitle = document.querySelector('.profile__title');
 
@@ -111,31 +113,27 @@ function renderCard({ name, link }) {
 
 render();
 
-
 function handleFormSubmitCard (evt) {
     evt.preventDefault();
-    renderCard({name: formtTitle.value,
-      link: formSubtitle.value});
-      closePopup (cardPopup);
+    renderCard({name: cardPopupTitle.value,
+      link: cardPopupSubtitle.value});
+    closePopup (cardPopup);
 }
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
-    
-    profileTitle.textContent = formtTitle.value; 
-    profileSubtitle.textContent = formSubtitle.value;
+    profileTitle.textContent = profilePopupTitle.value; 
+    profileSubtitle.textContent = profilePopupSubtitle.value;
     closePopup (profilePopup);
 }
-
 
 cardPopupForm.addEventListener('submit', handleFormSubmitCard);
 profilePopupForm.addEventListener('submit', handleFormSubmit);
 
 function openEdit () {
     openPopup (profilePopup);
-    formtTitle.value = profileTitle.textContent;
-    formSubtitle.value = profileSubtitle.textContent;
-    
+    profilePopupTitle.value = profileTitle.textContent;
+    profilePopupSubtitle.value = profileSubtitle.textContent;
 }
 
 function openFormAddCard () {
