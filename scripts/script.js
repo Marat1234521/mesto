@@ -1,23 +1,28 @@
 // Находим форму в DOM
-let pagePopup = document.querySelector('.popup'); //Всплывающее окно
-let openFormEdit = document.querySelector('.profile__edit'); //кнопка открытия окна Редактировать
-let closeFormBtn = document.querySelector('.popup__close'); //кнопка зкрытия окна 
-let profileAddCard = document.querySelector('.profile__add');
+const popup = document.querySelector('.popup'); //Всплывающее окно
+const openedPopup = document.querySelector('.popup_opened');
+const openFormEdit = document.querySelector('.profile__edit'); //кнопка открытия окна Редактировать
+const profileAddCard = document.querySelector('.profile__add');
 
-let formPopup = document.querySelector('.form');
-let formRectangle = document.querySelector('.form__rectangle');
+const profilePopup = document.querySelector("#profile-popup");
+const profilePopupForm = profilePopup.querySelector('.form');
+const cardPopup = document.querySelector("#card-popup");
+const cardPopupForm = cardPopup.querySelector('.form');
+const imagePopup = document.querySelector("#image-popup");
+const formRectangle = document.querySelector('.form__rectangle');
+const closeFormBtns = document.querySelectorAll('.popup__close'); 
 
-let elementsCard = document.querySelector('.elements');
-let elementCard = document.querySelector('.element');
-let elementImage = document.querySelector('.element__mask-group');
+const elementsCard = document.querySelector('.elements');
+const elementCard = document.querySelector('.element');
+const elementImage = document.querySelector('.element__mask-group');
 const placeTemplate = document.querySelector("#place-template").content;
 
-let formTitle = document.querySelector('.form__title');
-let formSubmit = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
-let formtTitle = document.querySelector('.form__input_type_name');
-let formSubtitle = document.querySelector('.form__input_type_description');
-let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileTitle = document.querySelector('.profile__title');
+const formTitle = document.querySelector('.form__title');
+const formSubmit = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
+const formtTitle = document.querySelector('.form__input_type_name');
+const formSubtitle = document.querySelector('.form__input_type_description');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const profileTitle = document.querySelector('.profile__title');
 
 
 const initialCards = [
@@ -50,21 +55,22 @@ const initialCards = [
 
 profileAddCard.addEventListener('click', openFormAddCard);
 openFormEdit.addEventListener('click', openEdit);
-closeFormBtn.addEventListener('click', closeForm);
+closeFormBtns.forEach((button) => {
+  button.addEventListener('click', closeForm);
+});
 
-
-function closeForm () {
-    pagePopup.classList.remove('popup_active'); 
-    document.querySelector('.picture').remove();
-    document.querySelector('.popup__title').remove();
+function closeForm (evt) {
+  closePopup(evt.target.closest('.popup')); 
+  document.querySelector('.picture').remove();
+  document.querySelector('.popup__title').remove();
 }
 
-function handleFormSubmit (evt) {
-    evt.preventDefault();
-    
-    profileTitle.textContent = formtTitle.value; 
-    profileSubtitle.textContent = formSubtitle.value;
-    closeForm ();
+function closePopup (popup) {
+    popup.classList.remove('popup_opened'); 
+}
+
+function openPopup (popup) {
+    popup.classList.add('popup_opened');
 }
 
 const cardsInfo = initialCards.map(function (item) {
@@ -85,6 +91,7 @@ function renderCard({ name, link }) {
     .cloneNode(true);
   placeElement.querySelector(".element__title").textContent = name;
   placeElement.querySelector(".element__mask-group").src = link;
+  placeElement.querySelector(".element__mask-group").alt = name;
   placeElement.querySelector('.element__group').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__group_active');
   });
@@ -94,10 +101,7 @@ function renderCard({ name, link }) {
   });
 
   placeElement.querySelector('.element__mask-group').addEventListener('click', function (evt) {
-    pagePopup.classList.add('popup_active');
-    document.querySelector('.form').style.display = "none";
-    document.querySelector('.popup__image').style.display = "flex";
-    document.querySelector('.popup__container').style.margin = "0 40px";
+    openPopup (imagePopup);
     document.querySelector('.popup__image').insertAdjacentHTML("afterbegin", `<img src="${link}" alt="${name}" class="picture">
     <h2 class="popup__title">${name}</h2>`);
   });
@@ -110,42 +114,34 @@ render();
 
 function handleFormSubmitCard (evt) {
     evt.preventDefault();
-    initialCards.unshift({name: formtTitle.value,
-    link: formSubtitle.value});
-    renderCard(initialCards[0]);
-    closeForm ();
+    renderCard({name: formtTitle.value,
+      link: formSubtitle.value});
+      closePopup (cardPopup);
 }
-console.log(initialCards);
+
+function handleFormSubmit (evt) {
+    evt.preventDefault();
+    
+    profileTitle.textContent = formtTitle.value; 
+    profileSubtitle.textContent = formSubtitle.value;
+    closePopup (profilePopup);
+}
 
 
+cardPopupForm.addEventListener('submit', handleFormSubmitCard);
+profilePopupForm.addEventListener('submit', handleFormSubmit);
 
 function openEdit () {
-    pagePopup.classList.add('popup_active');
-    document.querySelector('.form').style.display = "flex";
-    document.querySelector('.popup__image').style.display = "none";
-    document.querySelector('.popup__container').style.margin = "0 19px";
-    formTitle.textContent = 'Редактировать профиль';
-    formtTitle.placeholder="Жак-Ив Кусто";
-    formSubtitle.placeholder="Исследователь океана";
+    openPopup (profilePopup);
     formtTitle.value = profileTitle.textContent;
     formSubtitle.value = profileSubtitle.textContent;
-    formPopup.removeEventListener('submit', handleFormSubmitCard);
-    formPopup.addEventListener('submit', handleFormSubmit);
     
 }
 
 function openFormAddCard () {
-    pagePopup.classList.add('popup_active');
-    document.querySelector('.form').style.display = "flex";
-    document.querySelector('.popup__image').style.display = "none";
-    document.querySelector('.popup__container').style.margin = "0 19px";
-    formTitle.textContent = 'Новое место';
-    formtTitle.placeholder="Название";
-    formSubtitle.placeholder="Ссылка на картинку";
+    openPopup (cardPopup);
     formtTitle.value = '';
     formSubtitle.value = '';
-    formPopup.removeEventListener('submit', handleFormSubmit);
-    formPopup.addEventListener('submit', handleFormSubmitCard);
 }
 
 
