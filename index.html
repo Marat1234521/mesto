@@ -37,7 +37,7 @@
                 <button class="popup__close" type = "button"></button>
                 <form class="form">
                     <div class="form__rectangle">
-                        <h2 class="form__title" textcontent = "Редактировать профиль"></h2>
+                        <h2 class="form__title">Редактировать профиль</h2>
                         <input class="form__input form__input_type_name" type="text" placeholder="Жак-Ив Кусто">
                         <input class="form__input form__input_type_description" type="text" placeholder="Исследователь океана">
                         <button class="form__submit" type="submit">Сохранить</button>
@@ -50,7 +50,7 @@
                 <button class="popup__close" type = "button"></button>
                 <form class="form">
                     <div class="form__rectangle">
-                        <h2 class="form__title" textсontent = "Новое место"></h2>
+                        <h2 class="form__title">Новое место</h2>
                         <input class="form__input form__input_type_name" type="text" placeholder="Название">
                         <input class="form__input form__input_type_description" type="text" placeholder="Ссылка на картинку">
                         <button class="form__submit" type="submit">Сохранить</button>
@@ -61,8 +61,10 @@
         <div id="image-popup" class="popup">
             <div class="popup__container">
                 <button class="popup__close" type = "button"></button>
-                <form class="popup__image">
-                </form>
+                <div class="popup__image">
+                    <img class="picture">
+                    <h2 class="popup__title"></h2>
+                </div>
             </div>
         </div>
         <script src="scripts/script.js"></script>

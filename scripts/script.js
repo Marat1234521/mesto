@@ -62,9 +62,7 @@ closeFormBtns.forEach((button) => {
 });
 
 function closeForm (evt) {
-  closePopup(evt.target.closest('.popup')); 
-  document.querySelector('.picture').remove();
-  document.querySelector('.popup__title').remove();
+  closePopup(evt.target.closest('.popup'));
 }
 
 function closePopup (popup) {
@@ -88,27 +86,31 @@ function render() {
 }
 
 function renderCard({ name, link }) {
-  const placeElement = placeTemplate
+  elementsCard.prepend(createCard({name, link}));
+}
+
+function createCard(item) {
+  const cardElement = placeTemplate
     .querySelector(".element")
     .cloneNode(true);
-  placeElement.querySelector(".element__title").textContent = name;
-  placeElement.querySelector(".element__mask-group").src = link;
-  placeElement.querySelector(".element__mask-group").alt = name;
-  placeElement.querySelector('.element__group').addEventListener('click', function (evt) {
+  cardElement.querySelector(".element__title").textContent = item.name;
+  cardElement.querySelector(".element__mask-group").src = item.link;
+  cardElement.querySelector(".element__mask-group").alt = item.name;
+  cardElement.querySelector('.element__group').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__group_active');
   });
 
-  placeElement.querySelector('.element__basket').addEventListener('click', function (evt) {
+  cardElement.querySelector('.element__basket').addEventListener('click', function (evt) {
     evt.target.closest('.element').remove();
   });
 
-  placeElement.querySelector('.element__mask-group').addEventListener('click', function (evt) {
+  cardElement.querySelector('.element__mask-group').addEventListener('click', function (evt) {
     openPopup (imagePopup);
-    document.querySelector('.popup__image').insertAdjacentHTML("afterbegin", `<img src="${link}" alt="${name}" class="picture">
-    <h2 class="popup__title">${name}</h2>`);
+    imagePopup.querySelector(".popup__title").textContent = item.name;
+    imagePopup.querySelector(".picture").src = item.link;
+    imagePopup.querySelector(".picture").alt = item.name;
   });
-
-  elementsCard.prepend(placeElement);
+  return cardElement;
 }
 
 render();
@@ -118,6 +120,7 @@ function handleFormSubmitCard (evt) {
     renderCard({name: cardPopupTitle.value,
       link: cardPopupSubtitle.value});
     closePopup (cardPopup);
+    evt.target.reset();
 }
 
 function handleFormSubmit (evt) {
@@ -138,8 +141,6 @@ function openEdit () {
 
 function openFormAddCard () {
     openPopup (cardPopup);
-    formtTitle.value = '';
-    formSubtitle.value = '';
 }
 
 
