@@ -25,6 +25,8 @@ const formTitle = document.querySelector('.form__title');
 const formSubmit = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitle = document.querySelector('.profile__title');
+const popupTitle = imagePopup.querySelector(".popup__title");
+const picture = imagePopup.querySelector(".picture");
 
 
 const initialCards = [
@@ -106,9 +108,9 @@ function createCard(item) {
 
   cardElement.querySelector('.element__mask-group').addEventListener('click', function (evt) {
     openPopup (imagePopup);
-    imagePopup.querySelector(".popup__title").textContent = item.name;
-    imagePopup.querySelector(".picture").src = item.link;
-    imagePopup.querySelector(".picture").alt = item.name;
+    popupTitle.textContent = item.name;
+    picture.src = item.link;
+    picture.alt = item.name;
   });
   return cardElement;
 }
