@@ -153,11 +153,7 @@ profilePopupForm.addEventListener('submit', handleFormSubmit);
 function openEdit () {
     profilePopupTitle.value = profileTitle.textContent;
     profilePopupSubtitle.value = profileSubtitle.textContent;
-    console.log(1);
-    openPopup (profilePopup);
-    console.log(2);
-    
-    
+    openPopup (profilePopup); 
 }
 
 function openFormAddCard () {

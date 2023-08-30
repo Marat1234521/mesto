@@ -3,7 +3,6 @@ const showInputError = (formElement, inputElement, errorMessage) => { //пока
     inputElement.classList.add('form__input_type_error');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('form__input-error_active');
-    console.log(errorMessage);
   };
   
   const hideInputError = (formElement, inputElement) => { //скрывает элемент ошибки
@@ -49,7 +48,6 @@ const showInputError = (formElement, inputElement, errorMessage) => { //пока
   
   function hasInvalidInput (inputList) {
     return inputList.some((inputElement) => {
-      console.log(inputElement.value);
     return !inputElement.validity.valid;
   }); 
   };
