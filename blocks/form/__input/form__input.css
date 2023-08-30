@@ -23,11 +23,16 @@
     line-height: normal;
 }
 
+.form__input:invalid {
+    border-bottom: 1px solid red; 
+  } 
+  
+
 .form__input:nth-child(2) {
     margin-top: 47px;
 }
 
-.form__input:nth-child(3) {
+.form__input:nth-child(4) {
     margin-top: 30px;
 }
 

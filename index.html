@@ -38,8 +38,10 @@
                 <form class="form">
                     <div class="form__rectangle">
                         <h2 class="form__title">Редактировать профиль</h2>
-                        <input class="form__input form__input_type_name" type="text" placeholder="Жак-Ив Кусто">
-                        <input class="form__input form__input_type_description" type="text" placeholder="Исследователь океана">
+                        <input class="form__input form__input_type_name" id="name-input" type="text" placeholder="Жак-Ив Кусто" value="Жак-Ив Кусто" minlength="2" maxlength="40" required>
+                        <span class="form__input-error name-input-error"></span>
+                        <input class="form__input form__input_type_description" id="description-input" type="text" placeholder="Исследователь океана" value="Исследователь океана" minlength="2" maxlength="200" required>
+                        <span class="form__input-error description-input-error"></span>
                         <button class="form__submit" type="submit">Сохранить</button>
                     </div>
                 </form>
@@ -51,8 +53,10 @@
                 <form class="form">
                     <div class="form__rectangle">
                         <h2 class="form__title">Новое место</h2>
-                        <input class="form__input form__input_type_name" type="text" placeholder="Название">
-                        <input class="form__input form__input_type_description" type="text" placeholder="Ссылка на картинку">
+                        <input class="form__input form__input_type_name" id="picture-input" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+                        <span class="form__input-error picture-input-error"></span>
+                        <input class="form__input form__input_type_description" id="url-input" type="url" placeholder="Ссылка на картинку" required>
+                        <span class="form__input-error url-input-error"></span>
                         <button class="form__submit" type="submit">Сохранить</button>
                     </div>
                 </form>
@@ -68,6 +72,7 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/validate.js"></script>
     </div>
 </body>
 </html>

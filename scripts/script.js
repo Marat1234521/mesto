@@ -1,6 +1,5 @@
 // Находим форму в DOM
-const popup = document.querySelector('.popup'); //Всплывающее окно
-const openedPopup = document.querySelector('.popup_opened');
+const popupAll = document.querySelectorAll('.popup'); //Всплывающее окно
 const openFormEdit = document.querySelector('.profile__edit'); //кнопка открытия окна Редактировать
 const profileAddCard = document.querySelector('.profile__add');
 
@@ -27,6 +26,9 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitle = document.querySelector('.profile__title');
 const popupTitle = imagePopup.querySelector(".popup__title");
 const picture = imagePopup.querySelector(".picture");
+
+
+
 
 
 const initialCards = [
@@ -59,6 +61,19 @@ const initialCards = [
 
 profileAddCard.addEventListener('click', openFormAddCard);
 openFormEdit.addEventListener('click', openEdit);
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+});
+popupAll.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.currentTarget === evt.target) {
+      closePopup(popup);
+    }
+  });
+});
 closeFormBtns.forEach((button) => {
   button.addEventListener('click', closeForm);
 });
@@ -136,16 +151,15 @@ cardPopupForm.addEventListener('submit', handleFormSubmitCard);
 profilePopupForm.addEventListener('submit', handleFormSubmit);
 
 function openEdit () {
-    openPopup (profilePopup);
     profilePopupTitle.value = profileTitle.textContent;
     profilePopupSubtitle.value = profileSubtitle.textContent;
+    console.log(1);
+    openPopup (profilePopup);
+    console.log(2);
+    
+    
 }
 
 function openFormAddCard () {
     openPopup (cardPopup);
 }
-
-
-
-
-

@@ -20,6 +20,12 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+.form__submit:active {
+    color: rgba(0, 0, 0, 0.2);
+    background-color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 @media screen and (max-width: 320px) {
     .form__submit {
         margin-top: 45px;
