@@ -49,7 +49,6 @@ const showInputError = (formElement, inputElement, errorMessage) => { //пока
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-  
       setEventListeners(formElement);
   });
   };
@@ -71,4 +70,9 @@ const showInputError = (formElement, inputElement, errorMessage) => { //пока
       buttonElement.style.disabled = false; 
     }
   }
+
+ function disableSubmitButton (buttonElement) {
+  buttonElement.classList.add(selectors.inactiveButtonClass);
+  buttonElement.style.disabled = true;
+ }
   

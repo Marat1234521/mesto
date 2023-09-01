@@ -61,7 +61,6 @@ function closePopup (popup) {
 function openPopup (popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeOpenedPopup);
-    setEventListeners(popup.querySelector('.form'));
 }
 
 const cardsInfo = initialCards.map(function (item) {
@@ -114,7 +113,7 @@ function handleFormSubmitCard (evt) {
     evt.target.reset();
 }
 
-function ubmitEditProfileForm (evt) {
+function submitEditProfileForm (evt) {
     evt.preventDefault();
     profileTitle.textContent = profilePopupTitle.value; 
     profileSubtitle.textContent = profilePopupSubtitle.value;
@@ -122,7 +121,7 @@ function ubmitEditProfileForm (evt) {
 }
 
 cardPopupForm.addEventListener('submit', handleFormSubmitCard);
-profilePopupForm.addEventListener('submit', ubmitEditProfileForm);
+profilePopupForm.addEventListener('submit', submitEditProfileForm);
 
 function openEditProfileForm () {
     profilePopupTitle.value = profileTitle.textContent;
@@ -131,5 +130,6 @@ function openEditProfileForm () {
 }
 
 function openFormAddCard () {
+    disableSubmitButton (cardPopup.querySelector('.form__submit'));
     openPopup (cardPopup);
 }
