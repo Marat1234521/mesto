@@ -11,7 +11,6 @@ const cardPopup = document.querySelector("#card-popup");
 const cardPopupForm = cardPopup.querySelector('.form');
 const cardPopupTitle = cardPopupForm.querySelector('.form__input_type_name');
 const cardPopupSubtitle = cardPopupForm.querySelector('.form__input_type_description');
-const imagePopup = document.querySelector("#image-popup");
 const formRectangle = document.querySelector('.form__rectangle');
 const closeFormBtns = document.querySelectorAll('.popup__close'); 
 
@@ -24,8 +23,6 @@ const formTitle = document.querySelector('.form__title');
 const formSubmit = document.querySelector('.form__submit'); //Кнопка отправки информации в форме
 const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitle = document.querySelector('.profile__title');
-const popupTitle = imagePopup.querySelector(".popup__title");
-const picture = imagePopup.querySelector(".picture");
 const elementsCard = document.querySelector('.elements');
 const placeTemplate = document.querySelector("#place-template").content;
 const initialCards = [
@@ -104,9 +101,14 @@ initialCards.map(function (item) {
   renderCard(item);
 });
 
-function renderCard(item) {
+function createCard(item) {
   const card = new Card(item.name, item.link, placeTemplate);
-  elementsCard.prepend(card.render());
+  const cardElement = card.render();
+  return cardElement;
+}
+
+function renderCard(item) {
+  elementsCard.prepend(createCard(item));
 }
 
 
@@ -133,11 +135,6 @@ function openEditProfileForm () {
     profilePopupSubtitle.value = profileSubtitle.textContent;
     openPopup (profilePopup); 
 }
-
-function disableSubmitButton (buttonElement) {
-  buttonElement.classList.add(selectors.inactiveButtonClass);
-  buttonElement.style.disabled = true;
- }
 
 function openFormAddCard () {
     disableSubmitButton (cardPopup.querySelector('.form__submit'));
