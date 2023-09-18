@@ -1,3 +1,5 @@
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 // Находим форму в DOM
 const popupAll = document.querySelectorAll('.popup'); //Всплывающее окно
 const openFormEdit = document.querySelector('.profile__edit'); //кнопка открытия окна Редактировать
@@ -13,7 +15,9 @@ const cardPopupTitle = cardPopupForm.querySelector('.form__input_type_name');
 const cardPopupSubtitle = cardPopupForm.querySelector('.form__input_type_description');
 const formRectangle = document.querySelector('.form__rectangle');
 const closeFormBtns = document.querySelectorAll('.popup__close'); 
-
+const imagePopup = document.querySelector("#image-popup");
+const picture = document.querySelector('.picture');
+const popupTitle = document.querySelector('.popup__title');
 
 const elementCard = document.querySelector('.element');
 const elementImage = document.querySelector('.element__mask-group');
@@ -101,8 +105,15 @@ initialCards.map(function (item) {
   renderCard(item);
 });
 
+function handleCardClick(name, link) {
+  popupTitle.textContent = name;
+  picture.src = link;
+  picture.alt = name;
+  openPopup (imagePopup);
+}
+
 function createCard(item) {
-  const card = new Card(item.name, item.link, placeTemplate);
+  const card = new Card(item.name, item.link, placeTemplate, handleCardClick);
   const cardElement = card.render();
   return cardElement;
 }
@@ -110,7 +121,6 @@ function createCard(item) {
 function renderCard(item) {
   elementsCard.prepend(createCard(item));
 }
-
 
 function handleFormSubmitCard (evt) {
   evt.preventDefault();
@@ -133,16 +143,19 @@ profilePopupForm.addEventListener('submit', submitEditProfileForm);
 function openEditProfileForm () {
     profilePopupTitle.value = profileTitle.textContent;
     profilePopupSubtitle.value = profileSubtitle.textContent;
+    const formvalidator = new FormValidator(selectors, profilePopupForm);
+    formvalidator.enableValidation();
     openPopup (profilePopup); 
 }
 
 function openFormAddCard () {
-    disableSubmitButton (cardPopup.querySelector('.form__submit'));
+    const formvalidator = new FormValidator(selectors, cardPopupForm);
+    formvalidator.enableValidation();
     openPopup (cardPopup);
 }
 
-const formList = Array.from(document.querySelectorAll(selectors.formSelector));
-formList.forEach((formElement) => {
-  const formvalidator = new FormValidator(selectors, formElement);
-  formvalidator.enableValidation();
-});
+// const formList = Array.from(document.querySelectorAll(selectors.formSelector));
+// formList.forEach((formElement) => {
+//   const formvalidator = new FormValidator(selectors, formElement);
+//   formvalidator.enableValidation();
+// });

@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(selectors, formElement) {
     this._selectors = selectors;
     this._formElement = formElement;
@@ -55,10 +55,10 @@ class FormValidator {
   
   _toggleButtonState (inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(selectors.inactiveButtonClass);
+      buttonElement.classList.add(this._selectors.inactiveButtonClass);
       buttonElement.style.disabled = true;
     } else {
-      buttonElement.classList.remove(selectors.inactiveButtonClass);
+      buttonElement.classList.remove(this._selectors.inactiveButtonClass);
       buttonElement.style.disabled = false; 
     }
   }

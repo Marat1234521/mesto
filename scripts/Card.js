@@ -1,7 +1,8 @@
-class Card {
-  constructor(name, link, placeTemplate) {
-    this.name = name;
-    this.link = link;
+export class Card {
+  constructor(name, link, placeTemplate, handleCardClick) {
+    this._name = name;
+    this._link = link;
+    this._handleCardClick = handleCardClick;
     this.placeTemplate = placeTemplate
       .querySelector(".element")
       .cloneNode(true);
@@ -15,9 +16,9 @@ class Card {
   
 
   _createCard() {
-    this.placeTemplate.querySelector(".element__title").textContent = this.name;
-    this._cardPicture.src = this.link;
-    this._cardPicture.alt = this.name;
+    this.placeTemplate.querySelector(".element__title").textContent = this._name;
+    this._cardPicture.src = this._link;
+    this._cardPicture.alt = this._name;
   }
 
 
@@ -29,19 +30,14 @@ class Card {
     this._submitButton.closest('.element').remove();
   }
 
-  _handleImageClick() {
-    this._imagePopup.classList.toggle('popup_opened');
-    this._popupTitle.textContent = this.name;
-    this._picture.src = this.link;
-    this._picture.alt = this.name;
-  }
-
   _setListeners() {
     this._likeButton.addEventListener('click', () => this._toggleLike());
     
     this._submitButton.addEventListener('click', () => this._deleteCard());
-  
-    this._cardPicture.addEventListener('click',() => this._handleImageClick());
+
+    this._cardPicture.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link);
+    });
   } 
   
   render() {
