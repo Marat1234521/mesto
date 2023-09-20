@@ -140,22 +140,18 @@ function submitEditProfileForm (evt) {
 cardPopupForm.addEventListener('submit', handleFormSubmitCard);
 profilePopupForm.addEventListener('submit', submitEditProfileForm);
 
+const formvalidatorProfile = new FormValidator(selectors, profilePopupForm);
+formvalidatorProfile.enableValidation();
+
 function openEditProfileForm () {
     profilePopupTitle.value = profileTitle.textContent;
     profilePopupSubtitle.value = profileSubtitle.textContent;
-    const formvalidator = new FormValidator(selectors, profilePopupForm);
-    formvalidator.enableValidation();
     openPopup (profilePopup); 
 }
 
+const formvalidatorCard = new FormValidator(selectors, cardPopupForm);
+formvalidatorCard.enableValidation();
+
 function openFormAddCard () {
-    const formvalidator = new FormValidator(selectors, cardPopupForm);
-    formvalidator.enableValidation();
     openPopup (cardPopup);
 }
-
-// const formList = Array.from(document.querySelectorAll(selectors.formSelector));
-// formList.forEach((formElement) => {
-//   const formvalidator = new FormValidator(selectors, formElement);
-//   formvalidator.enableValidation();
-// });
