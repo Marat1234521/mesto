@@ -40,13 +40,23 @@ export class FormValidator {
     });
   };
   
+  _resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   enableValidation () {
-    console.log('hi');
+    
     this._setEventListeners ();
     this._formElement.addEventListener('submit', (evt) => {
+      this._resetValidation();
       evt.preventDefault();
     });
       this._setEventListeners();
+
   };
   
   _hasInvalidInput () {
