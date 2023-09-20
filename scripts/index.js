@@ -141,17 +141,18 @@ cardPopupForm.addEventListener('submit', handleFormSubmitCard);
 profilePopupForm.addEventListener('submit', submitEditProfileForm);
 
 const formvalidatorProfile = new FormValidator(selectors, profilePopupForm);
-formvalidatorProfile.enableValidation();
+
 
 function openEditProfileForm () {
+    formvalidatorProfile.enableValidation();
     profilePopupTitle.value = profileTitle.textContent;
     profilePopupSubtitle.value = profileSubtitle.textContent;
     openPopup (profilePopup); 
 }
 
 const formvalidatorCard = new FormValidator(selectors, cardPopupForm);
-formvalidatorCard.enableValidation();
 
 function openFormAddCard () {
+    formvalidatorCard.enableValidation();
     openPopup (cardPopup);
 }
