@@ -14,7 +14,7 @@
     line-height: normal;
 }
 
-.form___input::placeholder {
+.form__input::placeholder {
     color: #000;
     font-family: 'Inter', Arial, sans-serif;
     font-size: 14px;
