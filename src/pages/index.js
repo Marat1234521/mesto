@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 ////import logo from '../images/logo.svg';
 //import ZhakImage from '../images/image.jpg';
 import FormValidator from '../components/FormValidator.js';
@@ -11,7 +11,7 @@ import UserInfo from '../components/UserInfo.js';
 
 // Находим форму в DOM
 // const popupAll = document.querySelectorAll('.popup'); //Всплывающее окно
-const openFormEdit = document.querySelector('.profile__edit'); //кнопка открытия окна Редактировать
+const openFormEditButton = document.querySelector('.profile__edit'); //кнопка открытия окна Редактировать
 const profileAddCard = document.querySelector('.profile__add');
 
 const headerLogoClass = document.querySelector(".header__logo");
@@ -66,7 +66,6 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-
   const selectors = {
     formSelector: '.form',
     inputSelector: '.form__input',
@@ -83,10 +82,15 @@ function handleCardClick(name, link) {
 const popupPicture = new PopupWithImage('#image-popup');
 popupPicture.setEventListeners();
 
+function createCard(item) {
+  const card = new Card(item.name, item.link, placeTemplate, handleCardClick);
+  const cardElement = card.render();
+  return cardElement;
+}
+
 const defaultCardList = new Section({
     renderer: (item) => {
-      const card = new Card(item.name, item.link, placeTemplate, handleCardClick);
-      const cardElement = card.render();
+      const cardElement = createCard(item);
       defaultCardList.addItem(cardElement);
     }
   },
@@ -107,39 +111,35 @@ const popupEditProfile = new PopupWIthForm({
 
 popupEditProfile.setEventListeners();
 
-openFormEdit.addEventListener('click', () => {
-    const formvalidatorProfile = new FormValidator(selectors, profilePopupForm);
-    formvalidatorProfile.enableValidation();
-    const userData = user.getUserInfo();
-    profilePopupTitle.value = userData.name;
-    profilePopupSubtitle.value = userData.about;
-    popupEditProfile.open();
-});
+const formvalidatorProfile = new FormValidator(selectors, profilePopupForm);
+formvalidatorProfile.enableValidation();
 
-const addcardList = new Section({
-  renderer: (item) => {
-    const newCard = new Card(item.name, item.link, placeTemplate, handleCardClick);
-    const newcardElement = newCard.render();
-    addcardList.addItem(newcardElement);
-  },
-}, elementsCard);
+function openFormEdit () {
+  const userData = user.getUserInfo();
+  profilePopupTitle.value = userData.name;
+  profilePopupSubtitle.value = userData.about;
+  popupEditProfile.open();
+}
 
-
+openFormEditButton.addEventListener('click', openFormEdit);
 
 const popupAddCard = new PopupWIthForm({
   popupSelector: '#card-popup',
   handleFormSubmit: (cardsList) => {
     const cardsLists = [];
     cardsLists.push({name: cardsList[0], link: cardsList[1]});
-    addcardList.renderItems(cardsLists);
+    defaultCardList.renderItems(cardsLists);
     popupAddCard.close();
   }
 });
 
 popupAddCard.setEventListeners();
 
-profileAddCard.addEventListener('click', () => {
-  const formvalidatorCard = new FormValidator(selectors, cardPopupForm);
-  formvalidatorCard.enableValidation();
-  popupAddCard.open();
-});
+const formvalidatorCard = new FormValidator(selectors, cardPopupForm);
+formvalidatorCard.enableValidation();
+
+function popupAddCardOpen () {
+  popupAddCard.open()
+}
+
+profileAddCard.addEventListener('click', popupAddCardOpen);
