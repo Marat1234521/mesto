@@ -104,7 +104,7 @@ const user = new UserInfo({ userNameElement: profileTitle, userInfoElement: prof
 const popupEditProfile = new PopupWIthForm({
   popupSelector: '#profile-popup',
   handleFormSubmit: (inputValues) => {
-    user.setUserInfo({ name: inputValues[0] , about: inputValues[1] });
+    user.setUserInfo({ name: inputValues['name-input'] , about: inputValues['description-input'] });
     popupEditProfile.close();
   }
 });
@@ -127,7 +127,7 @@ const popupAddCard = new PopupWIthForm({
   popupSelector: '#card-popup',
   handleFormSubmit: (cardsList) => {
     const cardsLists = [];
-    cardsLists.push({name: cardsList[0], link: cardsList[1]});
+    cardsLists.push({name: cardsList['picture-input'], link: cardsList['url-input']});
     defaultCardList.renderItems(cardsLists);
     popupAddCard.close();
   }
