@@ -32,10 +32,11 @@ module.exports = {
       // добавили правило для обработки файлов
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
-        type: 'asset/resource',
-        generator: {
-            filename: 'images/[name].[hash][ext]',
-        }
+        loader: 'file-loader?name=./images/[name].[ext]'
+        // type: 'asset/resource',
+        // generator: {
+        //     filename: 'images/[name].[hash][ext]',
+        // }
     },
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/i,

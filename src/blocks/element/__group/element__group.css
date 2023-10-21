@@ -1,7 +1,4 @@
 .element__group {
-    margin: 30px 20px 30px auto;
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
     width: 22px;
     height: 19px;
     border: none;

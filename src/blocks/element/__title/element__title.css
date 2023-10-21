@@ -1,6 +1,6 @@
 .element__title {
     grid-column: 1 / 2;
-    grid-row: 2 / 3;
+    grid-row: 2 / 4;
     margin: 25px auto 25.2px 21px;
     max-width: 219px;
     overflow: hidden;

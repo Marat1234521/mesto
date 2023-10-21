@@ -9,7 +9,7 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 42px;
-    grid-template-rows: 1fr 80px;
+    grid-template-rows: 1fr 40px 40px;
 }
 
 @media screen and (max-width: 920px) {

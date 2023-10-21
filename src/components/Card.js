@@ -1,8 +1,14 @@
 export default class Card {
-  constructor(name,link, placeTemplate, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  constructor(data, placeTemplate, handleCardClick, { handleLikeClick, handleCardDelete }, currentUserId) {
+    this._name = data.name;
+    this._link = data.link;
     this._handleCardClick = handleCardClick;
+    this._likes = data.likes;
+    this._handleCardDelete = handleCardDelete;
+    this._handleLikeClick = handleLikeClick;
+    this._currentUserId = currentUserId;
+    this._ownerId = data.owner._id;
+    this._id = data._id;
     this.placeTemplate = placeTemplate
       .querySelector(".element")
       .cloneNode(true);
@@ -13,36 +19,52 @@ export default class Card {
     this._popupTitle = this._imagePopup.querySelector(".popup__title");
     this._picture = this._imagePopup.querySelector(".picture");
   }
-  
 
-  _createCard() {
-    this.placeTemplate.querySelector(".element__title").textContent = this._name;
+  _getView() {
+    if (this._ownerId === this._currentUserId) {
+      this._submitButton.classList.add('element__basket_active');
+      console.log(this._submitButton.classList);
+    }
+}
+
+  like() {
+    return this._like;
+  }
+
+  renderCard() {
+    this.placeTemplate.querySelector('.element__title').textContent = this._name;
     this._cardPicture.src = this._link;
     this._cardPicture.alt = this._name;
+
+    this.placeTemplate.querySelector('.element__group-counter').textContent = this._likes.length;
+    this._setEventListeners();
+    this._getView();
+    return this.placeTemplate;
   }
 
-
-  _toggleLike() {
-    this._likeButton.classList.toggle('element__group_active');
+  clickLike(data) {
+    this._like = data.likes.filter((item) => { return item._id == this._currentUserId; }).length > 0;
+    this.placeTemplate.querySelector('.element__group-counter').textContent = data.likes.length;
+    if (this._like) {
+        this._likeButton.classList.add('element__group_active');
+    } else {
+        this._likeButton.classList.remove('element__group_active');
+    }
   }
 
-  _deleteCard() {
-    this._submitButton.closest('.element').remove();
+  deleteCard() {
+    this.placeTemplate.remove();
+    this.placeTemplate = null;
   }
 
-  _setListeners() {
-    this._likeButton.addEventListener('click', () => this._toggleLike());
-    
-    this._submitButton.addEventListener('click', () => this._deleteCard());
+  _setEventListeners() {
+    this._submitButton.addEventListener('click', () => this._handleCardDelete());
+
+    this._likeButton.addEventListener('click', () => this._handleLikeClick());
 
     this._cardPicture.addEventListener('click', () => {
       this._handleCardClick(this._name, this._link);
     });
-  } 
-  
-  render() {
-    this._createCard();
-    this._setListeners();
-    return this.placeTemplate;
   }
+
 }

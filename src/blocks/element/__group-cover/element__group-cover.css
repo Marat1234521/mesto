@@ -1,0 +1,9 @@
+.element__group-cover {
+    margin: 0 auto 0 0;
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

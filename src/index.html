@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Project 3 Akhmetov</title>
 </head>
 <body class="page">
     <div class="page__container">
         <header class="header">
-            <img src="<%=require('../images/logo.svg')%>" alt="Логотип шапки" class="header__logo">
+            <img src="./images/logo.svg" alt="Логотип шапки" class="header__logo">
         </header>
         <section class="profile">
-            <img src="<%=require('./images/image.jpg')%>" alt="Аватар профиля" class="profile__avatar">
+            <div class="profile__avatar"></div>
             <div class="profile__info">
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
-                <p class="profile__subtitle">Исследователь океана</p>
+                <h1 class="profile__title"></h1> <!-- Жак-Ив Кусто -->
+                <p class="profile__subtitle"></p> <!-- Исследователь океана -->
                 <button class="profile__edit" type = "button"></button>
             </div>
             <button class="profile__add" type = "button"></button>
@@ -25,7 +25,10 @@
             <article class="element">
                 <h2 class="element__title"></h2>
                 <img alt="card" class="element__mask-group">
-                    <button class="element__group" type = "button"></button>
+                    <div class="element__group-cover">
+                        <button class="element__group" type = "button"></button>
+                        <span class="element__group-counter"></span>
+                    </div>
                     <button class="element__basket" type = "button"></button>
             </article>
         </template>
@@ -69,6 +72,30 @@
                     <img class="picture">
                     <h2 class="popup__title"></h2>
                 </div>
+            </div>
+        </div>
+        <div id="avatar-popup" class="popup">
+            <div class="popup__container">
+                <button class="popup__close" type="button"></button>
+                <form class="form">
+                    <div class="form__rectangle">
+                        <h2 class="form__title">Обновить аватар</h2>
+                        <input class="form__input form__input_type_description" id="nameurl-input" type="url" placeholder="Ссылка на картинку" required>
+                        <span class="form__input-error nameurl-input-error"></span>
+                        <button class="form__submit" type="submit">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="prevent-popup" class="popup">
+            <div class="popup__container">
+                <button class="popup__close" type="button"></button>
+                <form class="form">
+                    <div class="form__rectangle">
+                        <h2 class="form__title">Вы уверены?</h2>
+                        <button class="form__submit" type="submit">Да</button>
+                    </div>
+                </form>
             </div>
         </div>
         <script type="module" src="pages/index.js"></script>
