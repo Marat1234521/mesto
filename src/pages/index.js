@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import Api from '../components/Api.js';
@@ -25,42 +25,42 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitle = document.querySelector('.profile__title');
 const elementsCard = document.querySelector('.elements');
 const placeTemplate = document.querySelector("#place-template").content;
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-  console.log('hi');
-  fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
-  headers: {
-    authorization: 'f096e9c2-eb55-410c-82ab-0b0e34cd39d8'
-  }
-})
-  .then(res => res.json())
-  .then((res) => {
-    console.log(res);
-  });
+// const initialCards = [
+//     {
+//       name: 'Архыз',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+//     },
+//     {
+//       name: 'Челябинская область',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+//     },
+//     {
+//       name: 'Иваново',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+//     },
+//     {
+//       name: 'Камчатка',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+//     },
+//     {
+//       name: 'Холмогорский район',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+//     },
+//     {
+//       name: 'Байкал',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//     }
+//   ];
+//   console.log('hi');
+//   fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
+//   headers: {
+//     authorization: 'f096e9c2-eb55-410c-82ab-0b0e34cd39d8'
+//   }
+// })
+//   .then(res => res.json())
+//   .then((res) => {
+//     console.log(res);
+//   });
 
 //   fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
 //   method: 'PATCH',
@@ -116,7 +116,7 @@ function handleLikeClick(card, data) {
 
 function handleCardDelete(card) {
   popupTypeChoice.setFormSubmitHandler(() => {
-      api.deleteCard(card._id)
+      api.deleteCard(card.getId())
           .then(() => {
               card.deleteCard();
 
@@ -132,15 +132,11 @@ function handleCardDelete(card) {
 function renderLoading(load) {
   if (load) {
     console.log('ff');
-      Array.from(formSubmit).forEach((button) => {
-        button.textContent = "Сохранение...";
-      })
+    formSubmit.textContent = "Сохранение...";
   } 
   else {
     console.log('gg');
-      Array.from(formSubmit).forEach((button) => {
-        button.textContent = "Сохранить";
-      })
+    formSubmit.textContent = "Сохранить";
   }
 }
 
@@ -153,11 +149,10 @@ function createCard(data, currentUserId, defaultCardList) {
       },
       currentUserId);
   const cardElement = newCard.renderCard();
-  newCard.clickLike(data);
   defaultCardList.addItem(cardElement);
 }
 
-const user = new UserInfo({ userNameElement: profileTitle, userInfoElement: profileSubtitle });
+const user = new UserInfo({ userNameElement: profileTitle, userInfoElement: profileSubtitle, avatarImg: avatarImg });
 
 const popupEditProfile = new PopupWIthForm({
   popupSelector: '#profile-popup',
@@ -260,7 +255,6 @@ avatarImg.addEventListener('click', popupAvatarOpen);
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cards, userData]) => {
       user.setUserInfo(userData);
-      avatarImg.style.backgroundImage = `url(${userData.avatar})`;
       currentUserId = userData._id;
 
       defaultCardList.renderItems(cards);

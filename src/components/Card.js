@@ -1,5 +1,6 @@
 export default class Card {
   constructor(data, placeTemplate, handleCardClick, { handleLikeClick, handleCardDelete }, currentUserId) {
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
@@ -27,6 +28,10 @@ export default class Card {
     }
 }
 
+  getId() {
+    return this._id;
+  }
+
   like() {
     return this._like;
   }
@@ -39,9 +44,19 @@ export default class Card {
     this.placeTemplate.querySelector('.element__group-counter').textContent = this._likes.length;
     this._setEventListeners();
     this._getView();
+    this.clickLike(this._data);
     return this.placeTemplate;
   }
 
+  /*clickLike(data) {
+    this._like = data.likes.filter((item) => { return item._id == this._currentUserId; }).length > 0;
+    this.placeTemplate.querySelector('.element__group-counter').textContent = data.likes.length;
+    if (this._like) {
+        this._likeButton.classList.add('element__group_active');
+    } else {
+        this._likeButton.classList.remove('element__group_active');
+    }
+  }*/
   clickLike(data) {
     this._like = data.likes.filter((item) => { return item._id == this._currentUserId; }).length > 0;
     this.placeTemplate.querySelector('.element__group-counter').textContent = data.likes.length;
