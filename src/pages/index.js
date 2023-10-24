@@ -60,10 +60,8 @@ const popupPicture = new PopupWithImage('#image-popup');
 popupPicture.setEventListeners();
 
 const popupTypeChoice = new PopupWithConfirmation('#prevent-popup', function(card) {
- console.log(card + ' this')
   api.deleteCard(card.getId())
       .then(() => {
-          console.log('должно закрыть')
           card.deleteCard();
           // popupTypeChoice.close();
       })
@@ -88,13 +86,7 @@ function handleLikeClick(card, data) {
 }
 
 function handleCardDelete(card) {
-  console.log(card);
-  console.log('new');
-  
   popupTypeChoice.setEventListeners(card);
-
-  // popupTypeChoice.setFormSubmitHandler(card);
-  //Не могу разобраться почему срабатывает автоматически
   popupTypeChoice.open();
 }
 
