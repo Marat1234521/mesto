@@ -24,7 +24,6 @@ export default class Card {
   _getView() {
     if (this._ownerId === this._currentUserId) {
       this._submitButton.classList.add('element__basket_active');
-      console.log(this._submitButton.classList);
     }
 }
 
@@ -48,15 +47,6 @@ export default class Card {
     return this.placeTemplate;
   }
 
-  /*clickLike(data) {
-    this._like = data.likes.filter((item) => { return item._id == this._currentUserId; }).length > 0;
-    this.placeTemplate.querySelector('.element__group-counter').textContent = data.likes.length;
-    if (this._like) {
-        this._likeButton.classList.add('element__group_active');
-    } else {
-        this._likeButton.classList.remove('element__group_active');
-    }
-  }*/
   clickLike(data) {
     this._like = data.likes.filter((item) => { return item._id == this._currentUserId; }).length > 0;
     this.placeTemplate.querySelector('.element__group-counter').textContent = data.likes.length;

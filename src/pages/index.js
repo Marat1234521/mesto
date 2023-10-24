@@ -25,54 +25,6 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitle = document.querySelector('.profile__title');
 const elementsCard = document.querySelector('.elements');
 const placeTemplate = document.querySelector("#place-template").content;
-// const initialCards = [
-//     {
-//       name: 'Архыз',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//     },
-//     {
-//       name: 'Челябинская область',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//     },
-//     {
-//       name: 'Иваново',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//     },
-//     {
-//       name: 'Камчатка',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//     },
-//     {
-//       name: 'Холмогорский район',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//     },
-//     {
-//       name: 'Байкал',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//     }
-//   ];
-//   console.log('hi');
-//   fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
-//   headers: {
-//     authorization: 'f096e9c2-eb55-410c-82ab-0b0e34cd39d8'
-//   }
-// })
-//   .then(res => res.json())
-//   .then((res) => {
-//     console.log(res);
-//   });
-
-//   fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
-//   method: 'PATCH',
-//   headers: {
-//     authorization: 'f096e9c2-eb55-410c-82ab-0b0e34cd39d8',
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify({
-//     name: 'Marie Skłodowska Curie',
-//     about: 'Physicist and Chemist'
-//   })
-// });
 
   const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-77/',
@@ -91,6 +43,15 @@ const placeTemplate = document.querySelector("#place-template").content;
     errorClass: 'form__input-error_active'
   };
 
+const validAvatar = new FormValidator(selectors, avatarPopupForm);
+// validAvatar.enableValidation();
+
+const formvalidatorCard = new FormValidator(selectors, cardPopupForm);
+// formvalidatorCard.enableValidation();
+
+const formvalidatorProfile = new FormValidator(selectors, profilePopupForm);
+// formvalidatorProfile.enableValidation();
+
 function handleCardClick(name, link) {
   popupPicture.open(name, link);
 }
@@ -98,8 +59,20 @@ function handleCardClick(name, link) {
 const popupPicture = new PopupWithImage('#image-popup');
 popupPicture.setEventListeners();
 
-const popupTypeChoice = new PopupWithConfirmation('#prevent-popup');
-popupTypeChoice.setEventListeners();
+const popupTypeChoice = new PopupWithConfirmation('#prevent-popup', function(card) {
+ console.log(card + ' this')
+  api.deleteCard(card.getId())
+      .then(() => {
+          console.log('должно закрыть')
+          card.deleteCard();
+          // popupTypeChoice.close();
+      })
+      .catch((err) => {
+          console.log(`${err}`);
+      });
+});
+
+// popupTypeChoice.setEventListeners();
 
 let currentUserId = null;
 
@@ -115,29 +88,14 @@ function handleLikeClick(card, data) {
 }
 
 function handleCardDelete(card) {
-  popupTypeChoice.setFormSubmitHandler(() => {
-      api.deleteCard(card.getId())
-          .then(() => {
-              card.deleteCard();
+  console.log(card);
+  console.log('new');
+  
+  popupTypeChoice.setEventListeners(card);
 
-              popupTypeChoice.close();
-          })
-          .catch((err) => {
-              console.log(`${err}`);
-          });
-  });
+  // popupTypeChoice.setFormSubmitHandler(card);
+  //Не могу разобраться почему срабатывает автоматически
   popupTypeChoice.open();
-}
-
-function renderLoading(load) {
-  if (load) {
-    console.log('ff');
-    formSubmit.textContent = "Сохранение...";
-  } 
-  else {
-    console.log('gg');
-    formSubmit.textContent = "Сохранить";
-  }
 }
 
 function createCard(data, currentUserId, defaultCardList) {
@@ -161,7 +119,7 @@ const popupEditProfile = new PopupWIthForm({
       item['about'] = item['description-input'];
       delete item['name-input'];
       delete item['description-input'];
-      renderLoading(true);
+      popupEditProfile.renderLoading(true);
       api.setUserInfo(item)
           .then((data) => {
               user.setUserInfo(data);
@@ -171,7 +129,7 @@ const popupEditProfile = new PopupWIthForm({
               console.log(`${err}`);
           })
           .finally(() => {
-              renderLoading(false);
+            popupEditProfile.renderLoading(false);
           })
   }
 });
@@ -179,6 +137,7 @@ const popupEditProfile = new PopupWIthForm({
 popupEditProfile.setEventListeners();
 
 function openFormEdit () {
+  formvalidatorProfile.enableValidation();
   const userData = user.getUserInfo();
   profilePopupTitle.value = userData.name;
   profilePopupSubtitle.value = userData.about;
@@ -200,10 +159,9 @@ const popupAddCard = new PopupWIthForm({
       item['link'] = item['url-input'];
       delete item['picture-input'];
       delete item['url-input'];
-      renderLoading(true);
+      popupAddCard.renderLoading(true);
       api.createCard(item)
           .then((data) => {
-            console.log(data);
               createCard(data, currentUserId, defaultCardList);
               popupAddCard.close();
           })
@@ -211,7 +169,7 @@ const popupAddCard = new PopupWIthForm({
               console.log(`${err}`);
           })
           .finally(() => {
-              renderLoading(false);
+            popupAddCard.renderLoading(false);
           })
   }
 });
@@ -219,6 +177,7 @@ const popupAddCard = new PopupWIthForm({
 popupAddCard.setEventListeners();
 
 function popupAddCardOpen () {
+  formvalidatorCard.enableValidation();
   popupAddCard.open()
 }
 
@@ -229,17 +188,17 @@ const popupEditAvatar = new PopupWIthForm({
   handleFormSubmit: (item) => {
       item['avatar'] = item['nameurl-input'];
       delete item['nameurl-input'];
-      renderLoading(true);
+      popupEditAvatar.renderLoading(true);
       api.setAvatar(item)
           .then((data) => {
-              avatarImg.style.backgroundImage = `url(${data.avatar})`;
+              user.setUserInfo(data);
               popupEditAvatar.close();
           })
           .catch((err) => {
               console.log(`${err}`)
           })
           .finally(() => {
-              renderLoading(false);
+            popupEditAvatar.renderLoading(false);
           })
   }
 });
@@ -247,6 +206,7 @@ const popupEditAvatar = new PopupWIthForm({
 popupEditAvatar.setEventListeners();
 
 function popupAvatarOpen () {
+  validAvatar.enableValidation();
   popupEditAvatar.open();
 }
 
@@ -262,13 +222,3 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
   .catch((err) => {
       console.log(`${err}`);
   });
-
-
-const validAvatar = new FormValidator(selectors, avatarPopupForm);
-validAvatar.enableValidation();
-
-const formvalidatorCard = new FormValidator(selectors, cardPopupForm);
-formvalidatorCard.enableValidation();
-
-const formvalidatorProfile = new FormValidator(selectors, profilePopupForm);
-formvalidatorProfile.enableValidation();
