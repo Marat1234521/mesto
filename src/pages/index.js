@@ -59,18 +59,8 @@ function handleCardClick(name, link) {
 const popupPicture = new PopupWithImage('#image-popup');
 popupPicture.setEventListeners();
 
-const popupTypeChoice = new PopupWithConfirmation('#prevent-popup', function(card) {
-  api.deleteCard(card.getId())
-      .then(() => {
-          card.deleteCard();
-          // popupTypeChoice.close();
-      })
-      .catch((err) => {
-          console.log(`${err}`);
-      });
-});
-
-// popupTypeChoice.setEventListeners();
+const popupTypeChoice = new PopupWithConfirmation('#prevent-popup'); 
+popupTypeChoice.setEventListeners();
 
 let currentUserId = null;
 
@@ -86,9 +76,20 @@ function handleLikeClick(card, data) {
 }
 
 function handleCardDelete(card) {
-  popupTypeChoice.setEventListeners(card);
+  popupTypeChoice.setSubmitHandler(() => {
+    api.deleteCard(card.getId()) 
+        .then(() => {
+            card.deleteCard();
+            popupTypeChoice.close();
+        })
+        .catch((err) => {
+            console.log(`${err}`); 
+        });
+});
   popupTypeChoice.open();
 }
+
+
 
 function createCard(data, currentUserId, defaultCardList) {
   const newCard = new Card(data,
